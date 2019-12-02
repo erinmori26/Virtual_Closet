@@ -1,20 +1,20 @@
 import React from "react";
-// import { StatusBar, TouchableOpacity, Text } from "react-native";
-// import { createStackNavigator } from "react-navigation-stack";
+
 import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import Icon from "react-native-vector-icons/Ionicons";
 
 import settings from "./screen/settings";
-import home from "./screen/home";
 import buildOutfit from "./screen/buildOutfit";
 import addClothes from "./screen/addClothes";
+import Home from "./Home";
 
 const MainStack = createBottomTabNavigator(
   {
     Home: {
-      screen: home,
+      screen: Home,
       navigationOptions: {
         tabBarLabel: "Home",
         tabBarIcon: ({ tintColor }) => (
@@ -65,4 +65,7 @@ const MainStack = createBottomTabNavigator(
   }
 );
 
-export default createAppContainer(MainStack);
+// tab navigator needs to be wrapped inside a stack navigator
+export default createAppContainer(
+  createStackNavigator({ MainStack }, { headerMode: "none" })
+);
