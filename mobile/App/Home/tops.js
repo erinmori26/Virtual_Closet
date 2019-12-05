@@ -145,17 +145,13 @@ class tops extends React.Component {
         style={{ width: 40, height: 40, margin: 6 }}
       />
       <Text style={styles.lightText}>
-        {" "}
-        {data.item.title.charAt(0).toUpperCase() +
-          data.item.title.slice(1)}
-{" "}
+        {data.item.title.charAt(0).toUpperCase() + data.item.title.slice(1)}
       </Text>
     </TouchableOpacity>
   );
 
   render() {
-    const itemNumber = this.state.dataSource.filter(item => item.isSelect)
-      .length;
+    const itemNumber = this.state.dataSource.filter(item => item.isSelect).length;
     if (this.state.loading) {
       return (
         <View style={styles.loader}>
