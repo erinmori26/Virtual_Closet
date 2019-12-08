@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Image
 } from "react-native";
+import { VSFetch } from "../util/api";
 
 import { Icon } from "react-native-elements";
 
@@ -151,7 +152,8 @@ class tops extends React.Component {
   );
 
   render() {
-    const itemNumber = this.state.dataSource.filter(item => item.isSelect).length;
+    const itemNumber = this.state.dataSource.filter(item => item.isSelect)
+      .length;
     if (this.state.loading) {
       return (
         <View style={styles.loader}>

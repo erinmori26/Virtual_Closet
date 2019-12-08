@@ -1,8 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 
 const screen = Dimensions.get("window");
-const PIC_WIDTH = Math.floor(screen.width * 0.25);
-const PIC_HEIGHT = Math.floor(PIC_WIDTH * (323 / 222));
 
 export const colors = {
   white: "#fff",
@@ -35,7 +33,18 @@ export default StyleSheet.create({
     flexDirection: "row"
   },
   image: {
-    height: PIC_HEIGHT,
-    width: PIC_WIDTH
+    resizeMode: "contain",
+    flex: 1,
+    justifyContent: "center"
+  },
+  loadingContainer: {
+    // position: "absolute",
+    // top: 10,
+    // bottom: 0,
+    // left: 0,
+    // right: 0,
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#000000"
   }
 });

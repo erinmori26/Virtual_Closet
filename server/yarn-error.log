@@ -1,0 +1,43 @@
+Arguments: 
+  D:\Program Files (x86)\NodeJS\node.exe D:\Program Files (x86)\NodeJS\node_modules\yarn\bin\yarn.js add bodyparser
+
+PATH: 
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\dotnet\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Java\jdk-12.0.2\bin;C:\Python27;C:\Program Files\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\ErinM\AppData\Local\Android\Sdk\platform-tools;C:\Users\ErinM\AppData\Roaming\nvm;D:\Program Files (x86)\NodeJS;C:\Users\ErinM\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\ErinM\AppData\Local\Programs\Python\Python37-32\;C:\Users\ErinM\AppData\Local\Microsoft\WindowsApps;C:\Users\ErinM\AppData\Local\Microsoft\WindowsApps;D:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\ErinM\AppData\Roaming\nvm;D:\Program Files (x86)\NodeJS
+
+Yarn version: 
+  1.19.1
+
+Node version: 
+  12.9.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.npmjs.com/bodyparser: Not found
+      at Request.params.callback [as _callback] (C:\Users\ErinM\AppData\Roaming\nvm\v12.9.0\node_modules\yarn\lib\cli.js:66926:18)
+      at Request.self.callback (C:\Users\ErinM\AppData\Roaming\nvm\v12.9.0\node_modules\yarn\lib\cli.js:140564:22)
+      at Request.emit (events.js:209:13)
+      at Request.<anonymous> (C:\Users\ErinM\AppData\Roaming\nvm\v12.9.0\node_modules\yarn\lib\cli.js:141536:10)
+      at Request.emit (events.js:209:13)
+      at IncomingMessage.<anonymous> (C:\Users\ErinM\AppData\Roaming\nvm\v12.9.0\node_modules\yarn\lib\cli.js:141458:12)
+      at Object.onceWrapper (events.js:297:20)
+      at IncomingMessage.emit (events.js:214:15)
+      at endReadableNT (_stream_readable.js:1178:12)
+      at processTicksAndRejections (internal/process/task_queues.js:77:11)
+
+npm manifest: 
+  {
+    "private": true,
+    "dependencies": {
+      "express": "^4.16.4",
+      "helmet": "^3.18.0",
+      "moment": "^2.24.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
