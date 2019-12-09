@@ -11,13 +11,13 @@ const connectDB = require("../../util/db");
 app.post("*", (req, res) => {
   connectDB()
     .then(() => {
-      var newItem = new Item();
-      newItem.img.data = fs.readFileSync(req.files.userPhoto.path);
-      newItem.img.contentType = "image/png";
-      newItem.save();
+      // var newItem = new Item();
+      // newItem.img.data = fs.readFileSync(req.files.userPhoto.path);
+      // newItem.img.contentType = "image/png";
+      // newItem.save();
 
       // return Clothes.create(req.body); // takes in body of request
-      return Clothes.create(newItem);
+      return Clothes.create(req.body);
     })
     .then(cacheItem => {
       res.status(200).json({

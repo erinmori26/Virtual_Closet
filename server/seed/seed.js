@@ -1,15 +1,21 @@
 const connectDB = require("../util/db");
-const Clothes = require("../models/clothes");
+const tops = require("../models/tops");
+const bottoms = require("../models/bottoms");
 
-const data = require("./data");
+const t = require("./tops");
+const b = require("./bottoms");
 
 const seed = () => {
   connectDB()
+    .then(() => Promise.all([tops.deleteMany(), bottoms.deleteMany()]))
+    // .then(() => {
+    //   return tops.find().estimatedDocumentCount();
+    // })
     .then(() => {
-      return Clothes.find().estimatedDocumentCount();
+      return tops.create(t); // create multiple docs from data.js
     })
     .then(() => {
-      return Clothes.create(data); // create multiple docs from data.js
+      return bottoms.create(b); // create multiple docs from data.js
     })
     .then(() => console.log("DB Seeded."))
     .catch(error => {

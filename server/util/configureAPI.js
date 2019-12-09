@@ -11,13 +11,13 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // use Multer to take a photo and put it in a folder called 'uploads' for later access
-app.use(
-  multer({
-    dest: "../uploads/",
-    rename: function(fieldname, filename) {
-      return filename;
-    }
-  })
-);
+// app.use(
+//   multer({
+//     dest: "../uploads/",
+//     rename: function(fieldname, filename) {
+//       return filename;
+//     }
+//   })
+// );
 
 module.exports = app;

@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import Icon from "react-native-vector-icons/Ionicons";
 
-import settings from "./screen/settings";
+// import settings from "./screen/settings";
 import buildOutfit from "./screen/buildOutfit";
 import addClothes from "./screen/addClothes";
 import Home from "./Home";
@@ -39,21 +39,21 @@ const MainStack = createBottomTabNavigator(
           <Icon name="ios-body" color={tintColor} size={24} />
         )
       }
-    },
-    Settings: {
-      screen: settings,
-      navigationOptions: {
-        tabBarLabel: "Settings",
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="ios-settings" color={tintColor} size={24} />
-        )
-      }
     }
+    // Settings: {
+    //   screen: settings,
+    //   navigationOptions: {
+    //     tabBarLabel: "Settings",
+    //     tabBarIcon: ({ tintColor }) => (
+    //       <Icon name="ios-settings" color={tintColor} size={24} />
+    //     )
+    //   }
+    // }
   },
   {
     // router config
     initialRouteName: "Home",
-    order: ["Home", "Add", "Outfit", "Settings"],
+    order: ["Home", "Add", "Outfit"],
     navigationOptions: {
       tabBarVisible: true
     },

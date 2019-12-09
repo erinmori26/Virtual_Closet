@@ -1,29 +1,45 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar, SafeAreaView } from "react-native";
+import { ActivityIndicator, FlatList, View, Image } from "react-native";
+
 import { VSFetch } from "../util/api";
-
 import style from "../styles/index.style";
+import { AVAILABLE_SHOES } from "../data/available_shoes";
 
-const styles = StyleSheet.create({
-  text: {
-    color: "#000000",
-    fontSize: 20
-  }
-});
+const shoesList = [...AVAILABLE_SHOES];
 
-class shoes extends React.Component {
+export default class shoes extends React.Component {
+  state = {
+    items: shoesList,
+    loading: false
+  };
+
+  // componentDidMount() {
+  //   VSFetch("/tops")
+  //     .then(res => {
+  //       this.setState({
+  //         tops: res.result,
+  //         loading: false
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
+
   render() {
+    if (this.state.loading) {
+      return <ActivityIndicator />;
+    }
+
     return (
-      <View style={style.container}>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView style={style.safearea}>
+      <FlatList
+        data={this.state.items}
+        renderItem={({ item }) => (
           <View style={style.container}>
-            <Text stle={styles.text}>Scrollable image list of shoes</Text>
+            <Image style={style.im} source={item} />
           </View>
-        </SafeAreaView>
-      </View>
+        )}
+      />
     );
   }
 }
-
-export default shoes;

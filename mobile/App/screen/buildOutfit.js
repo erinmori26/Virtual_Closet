@@ -12,8 +12,10 @@ import { VSFetch } from "../util/api";
 
 import Swiper from "react-native-swiper";
 import style from "../styles/index.style";
+import { AVAILABLE_HATS } from "../data/available_hats";
 import { AVAILABLE_TOPS } from "../data/available_tops";
 import { AVAILABLE_BOTTOMS } from "../data/available_bottoms";
+import { AVAILABLE_SHOES } from "../data/available_shoes";
 
 const styles = StyleSheet.create({
   wrapper: {},
@@ -34,9 +36,10 @@ const styles = StyleSheet.create({
   }
 });
 
+const hats = [...AVAILABLE_HATS];
 const tops = [...AVAILABLE_TOPS];
 const bottoms = [...AVAILABLE_BOTTOMS];
-const TODO = ["1", "2", "3"];
+const shoes = [...AVAILABLE_SHOES];
 
 // const initialState = {
 //   data: possibleTops,
@@ -63,25 +66,7 @@ class buildOutfit extends Component {
             loadMinimalSize={5}
             loadMinimalLoader={<ActivityIndicator />}
           >
-            {TODO.map(i => {
-              return (
-                <View style={styles.slide}>
-                  {/* <Image style={style.image} source={i} /> */}
-                  <Text style={styles.text}>{i}</Text>
-                </View>
-              );
-            })}
-          </Swiper>
-          <Swiper
-            style={styles.wrapper}
-            containerStyle={styles.bigger}
-            showsPagination={false}
-            showsButtons
-            loadMinimal={true}
-            loadMinimalSize={5}
-            loadMinimalLoader={<ActivityIndicator />}
-          >
-            {tops.map(i => {
+            {hats.map(i => {
               return (
                 <View style={styles.slide}>
                   <Image style={style.image} source={i} />
@@ -98,10 +83,27 @@ class buildOutfit extends Component {
             loadMinimalSize={5}
             loadMinimalLoader={<ActivityIndicator />}
           >
-            {bottoms.map(i => {
+            {tops.map(j => {
               return (
                 <View style={styles.slide}>
-                  <Image style={style.image} source={i} />
+                  <Image style={style.image} source={j} />
+                </View>
+              );
+            })}
+          </Swiper>
+          <Swiper
+            style={styles.wrapper}
+            containerStyle={styles.bigger}
+            showsPagination={false}
+            showsButtons
+            loadMinimal={true}
+            loadMinimalSize={5}
+            loadMinimalLoader={<ActivityIndicator />}
+          >
+            {bottoms.map(k => {
+              return (
+                <View style={styles.slide}>
+                  <Image style={style.image} source={k} />
                 </View>
               );
             })}
@@ -114,11 +116,10 @@ class buildOutfit extends Component {
             loadMinimalSize={5}
             loadMinimalLoader={<ActivityIndicator />}
           >
-            {TODO.map(i => {
+            {shoes.map(m => {
               return (
                 <View style={styles.slide}>
-                  {/* <Image style={style.image} source={i} /> */}
-                  <Text style={styles.text}>{i}</Text>
+                  <Image style={style.image} source={m} />
                 </View>
               );
             })}

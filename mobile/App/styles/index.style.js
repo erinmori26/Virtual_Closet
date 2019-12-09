@@ -1,6 +1,7 @@
 import { StyleSheet, Dimensions } from "react-native";
 
 const screen = Dimensions.get("window");
+const h = screen.width / 2;
 
 export const colors = {
   white: "#fff",
@@ -36,6 +37,14 @@ export default StyleSheet.create({
     resizeMode: "contain",
     flex: 1,
     justifyContent: "center"
+  },
+  im: {
+    flex: 1,
+    height: h,
+    resizeMode: "contain",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff"
   },
   loadingContainer: {
     // position: "absolute",

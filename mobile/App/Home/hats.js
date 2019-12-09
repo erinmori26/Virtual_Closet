@@ -1,29 +1,45 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar, SafeAreaView } from "react-native";
+import { ActivityIndicator, FlatList, View, Image } from "react-native";
+
 import { VSFetch } from "../util/api";
-
 import style from "../styles/index.style";
+import { AVAILABLE_HATS } from "../data/available_hats";
 
-const styles = StyleSheet.create({
-  text: {
-    color: "#000000",
-    fontSize: 20
-  }
-});
+const hatsList = [...AVAILABLE_HATS];
 
-class hats extends React.Component {
+export default class hats extends React.Component {
+  state = {
+    items: hatsList,
+    loading: false
+  };
+
+  // componentDidMount() {
+  //   VSFetch("/tops")
+  //     .then(res => {
+  //       this.setState({
+  //         tops: res.result,
+  //         loading: false
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
+
   render() {
+    if (this.state.loading) {
+      return <ActivityIndicator />;
+    }
+
     return (
-      <View style={style.container}>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView style={style.safearea}>
+      <FlatList
+        data={this.state.items}
+        renderItem={({ item }) => (
           <View style={style.container}>
-            <Text stle={styles.text}>Scrollable image list of hats</Text>
+            <Image style={style.im} source={item} />
           </View>
-        </SafeAreaView>
-      </View>
+        )}
+      />
     );
   }
 }
-
-export default hats;

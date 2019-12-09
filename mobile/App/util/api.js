@@ -1,7 +1,7 @@
-const BASE_URL = "http://172.17.56.115:3000";
+const BASE_URL = "http://172.17.56.85:3000";
 
 export const VSFetch = (path, options = {}) => {
-  return fetch(`${BASE_URL}/api${path}`, options)
+  return fetch(`${BASE_URL}/api/clothes${path}`, options)
     .then(res => {
       if (res.ok) {
         return res.json();
@@ -11,7 +11,7 @@ export const VSFetch = (path, options = {}) => {
     })
     .catch(error => {
       // catch global errors
-      console.warn("ERROR: ", `${BASE_URL}/api${path}`, error);
+      console.warn("ERROR: ", `${BASE_URL}/api/clothes${path}`, error);
 
       throw new Error(error);
     });

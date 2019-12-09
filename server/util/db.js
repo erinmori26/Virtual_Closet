@@ -4,7 +4,7 @@ mongoose.Promise = global.Promise;
 let isConnected;
 
 const DB_URL =
-  "mongodb+srv://erinmori26:Pooperscooper1252@cluster0-ds4lf.mongodb.net/VirtualCloset?retryWrites=true&w=majority";
+  "mongodb+srv://erinmori26:<PASSWORD>@cluster0-ds4lf.mongodb.net/VC1?retryWrites=true&w=majority";
 
 const connectToDatabase = () => {
   if (isConnected) {
