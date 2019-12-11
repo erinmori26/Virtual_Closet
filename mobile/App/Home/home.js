@@ -10,13 +10,15 @@ import {
 } from "react-native";
 
 import style from "../styles/index.style";
+import { VSFetch } from "../util/api";
 
 const screen = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   text: {
     color: "#000000",
-    fontSize: 20
+    fontSize: 20,
+    marginTop: 5
   },
   button: {
     borderWidth: 10,
@@ -28,7 +30,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginRight: 15,
     marginLeft: 15,
-    marginTop: 50
+    marginTop: 50,
+    flex: 1
   },
   buttonText: {
     fontSize: 20,
@@ -39,6 +42,62 @@ const styles = StyleSheet.create({
 });
 
 class home extends React.Component {
+  state = { count: null, loading: false };
+
+  componentDidMount() {
+    this.setState({ loading: true }, () => {
+      VSFetch(`/getLog`, { method: "GET" })
+        .then(res => {
+          // get response
+          // console.log(res.result);
+          this.setState({ count: res.result.count }); // increment log after button press
+        })
+        .catch(error => {
+          console.log("log get error", error);
+        })
+        .finally(() => {
+          // can press button again
+          this.setState({ loading: false });
+        });
+    });
+  }
+
+  handleLogPress() {
+    this.setState({ loading: true }, () => {
+      VSFetch(`/addLog`, { method: "PUT" })
+        .then(res => {
+          // get response
+          // console.log(res.result);
+          this.setState({ count: res.result.count }); // increment log after button press
+        })
+        .catch(error => {
+          console.log("log press error", error);
+        })
+        .finally(() => {
+          // can press button again
+          this.setState({ loading: false });
+        });
+    });
+  }
+
+  handleClearPress() {
+    this.setState({ loading: true }, () => {
+      VSFetch(`/clearLog`, { method: "PUT" })
+        .then(res => {
+          // get response
+          // console.log(res.result);
+          this.setState({ count: res.result.count }); // increment log after button press
+        })
+        .catch(error => {
+          console.log("log clear error", error);
+        })
+        .finally(() => {
+          // can press button again
+          this.setState({ loading: false });
+        });
+    });
+  }
+
   render() {
     return (
       <View style={style.container}>
@@ -74,6 +133,23 @@ class home extends React.Component {
                 <Text style={styles.buttonText}>Shoes</Text>
               </TouchableOpacity>
             </View>
+            <View style={style.row}>
+              <TouchableOpacity
+                style={style.button1}
+                onPress={() => this.handleLogPress()}
+              >
+                <Text style={style.buttonText1}>Log Today</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={style.button1}
+                onPress={() => this.handleClearPress()}
+              >
+                <Text style={style.buttonText1}>Clear Log</Text>
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.text}>
+              {`Logged outfits ${this.state.count} times.`}
+            </Text>
           </View>
         </SafeAreaView>
       </View>

@@ -1,4 +1,4 @@
-const BASE_URL = "http://172.17.56.85:3000";
+const BASE_URL = "http://10.30.140.83:3000"; // ALWAYS CHECK
 
 export const VSFetch = (path, options = {}) => {
   return fetch(`${BASE_URL}/api/clothes${path}`, options)

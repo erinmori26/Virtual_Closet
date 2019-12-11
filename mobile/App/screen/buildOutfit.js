@@ -48,7 +48,7 @@ const shoes = [...AVAILABLE_SHOES];
 
 class buildOutfit extends Component {
   // eslint-disable-next-line react/state-in-constructor
-  // state = { ...initialState };
+  state = { count: 0, loading: false };
 
   render() {
     return (

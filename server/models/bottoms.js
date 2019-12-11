@@ -6,4 +6,4 @@ const BottomsSchema = new mongoose.Schema({
   img: { type: String, required: true }
 });
 
-module.exports = mongoose.model("Bottoms", BottomsSchema);
+module.exports = mongoose.model("bottoms", BottomsSchema);

@@ -5,11 +5,6 @@ const tops = require("../../../models/tops");
 app.get("*", (req, res) => {
   connectDB()
     .then(() => {
-      // const { _id } = req.query;
-      // if (_id) {
-      //   return tops.findOne({ _id });
-      // }
-
       return tops.find();
     })
     .then(result => {

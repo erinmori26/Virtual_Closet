@@ -55,5 +55,18 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: "#000000"
+  },
+  button1: {
+    backgroundColor: "indigo",
+    paddingVertical: 20,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    marginRight: 5,
+    marginTop: 10
+  },
+  buttonText1: {
+    color: "#fff",
+    fontSize: 15,
+    textAlign: "center"
   }
 });

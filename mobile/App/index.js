@@ -22,15 +22,15 @@ const MainStack = createBottomTabNavigator(
         )
       }
     },
-    Add: {
-      screen: addClothes,
-      navigationOptions: {
-        tabBarLabel: "Add",
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="ios-add" color={tintColor} size={24} />
-        )
-      }
-    },
+    // Add: {
+    //   screen: addClothes,
+    //   navigationOptions: {
+    //     tabBarLabel: "Add",
+    //     tabBarIcon: ({ tintColor }) => (
+    //       <Icon name="ios-add" color={tintColor} size={24} />
+    //     )
+    //   }
+    // },
     Outfit: {
       screen: buildOutfit,
       navigationOptions: {
@@ -53,7 +53,7 @@ const MainStack = createBottomTabNavigator(
   {
     // router config
     initialRouteName: "Home",
-    order: ["Home", "Add", "Outfit"],
+    order: ["Home", "Outfit"],
     navigationOptions: {
       tabBarVisible: true
     },

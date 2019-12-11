@@ -197,30 +197,173 @@
 
 // export default tops;
 
+import React from "react";
+import {
+  ActivityIndicator,
+  FlatList,
+  View,
+  Text,
+  Image,
+  Linking
+} from "react-native";
+
+import { VSFetch } from "../util/api";
+import style from "../styles/index.style";
+import TopPic from "../components/topPic";
+
+// const x = "../assets/Tops/1.png";
+
+export default class tops extends React.Component {
+  state = {
+    tops: [],
+    test: [],
+    loading: false
+  };
+
+  componentDidMount() {
+    VSFetch("/tops")
+      .then(res => {
+        this.setState({
+          test: res.result.img,
+          tops: res.result,
+          loading: false
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  loopRender() {
+    a = this.state.tops;
+
+    let s = [];
+    let t = [];
+    for (let i = 0; i < a.length; i++) {
+      s.push(a[i].img);
+      t.push(a[i].type);
+      console.log(t[i]);
+    }
+
+    return s;
+
+    // let l = [];
+    // for (let b = 0; b < s.length; b++) {
+    //   if (t[b] == "local") {
+    //     x = "require(" + s[b] + ")";
+    //     l.push(
+    //       <View style={style.container}>
+    //         {/* <Image style={style.image} source={x} /> */}
+    //         <Text style={style.headerText}>{x}</Text>
+    //       </View>
+    //     );
+    //   } else {
+    //     l.push(
+    //       <View style={style.container}>
+    //         <Image style={style.image} source={s[b]} />
+    //       </View>
+    //     );
+    //   }
+    // }
+
+    // return l;
+  }
+
+  newArr() {
+    let ar = [];
+    for (let u of this.state.tops) {
+      // console.log(u.img);
+      x = 'require("' + u.img + '")';
+      ar.push(x);
+    }
+
+    return ar;
+  }
+
+  render() {
+    if (this.state.loading) {
+      return <ActivityIndicator />;
+    }
+
+    y = this.newArr();
+    // console.log(y);
+    // for (let u of this.state.tops) {
+    //   console.log(u.img);
+    // }
+
+    // this.state.tops.map(us => {
+    //   console.log(us);
+    // });
+
+    return (
+      // <View style={style.container}>
+      //   {/* <Image style={style.image} source={this.state.tops[0].img} /> */}
+      //   <Image style={style.image} source={{uri: this.state.tops[0].img}} />
+      //   {/* <Text style={style.headerText}>{this.state.tops[0]}</Text> */}
+      // </View>
+      <View style={style.container}>
+        {/* {this.state.tops.map(mm => {
+          // <Image
+          //   style={{ height: 500, width: 500, flex: 1 }}
+          //   source={{
+          //     uri: mm
+          //   }}
+          // />;
+          <Text style={style.headerText}>{mm.type}</Text>;
+          // {/* <Text
+          //   style={style.headerText}
+          //   onPress={() => Linking.openURL(this.state.tops[0].img)}
+          // >
+          //   {this.state.tops[0].img}
+          // </Text> */}
+        {/* })} */}
+        {/* <Image style={style.image} source={y[0]} />
+        <Text style={style.headerText}>{y[0]}</Text> */}
+        {/* <TopPic {...this.state.tops[0]} /> */}
+        <FlatList
+          data={this.state.tops}
+          renderItem={item => (
+            // <View style={style.container}>
+            // <Image style={style.image} source={{ uri: item.img }} />
+            <Text style={style.headerText}>YES {item.img}</Text>
+            // </View>
+            // <TopPic {...item} />
+          )}
+          // renderItem={(n) => this.loopRender()}
+
+          // renderItem={({ item }) =>
+          //   item.type == "local" ? (
+          //     <View style={style.container}>
+          //       <Image style={style.image} source={require(item.img)} />
+          //     </View>
+          //   ) : (
+          //     <View style={style.container}>
+          //       <Image style={style.image} source={item.img} />
+          //     </View>
+          //   )
+          // }
+          keyExtractor={item => item._id}
+        />
+      </View>
+    );
+  }
+}
+
+// REGULAR ////////////////////////////////////////////////////////////////////////////
 // import React from "react";
-// import { ActivityIndicator, FlatList } from "react-native";
+// import { ActivityIndicator, FlatList, View, Image } from "react-native";
 
 // import { VSFetch } from "../util/api";
 // import style from "../styles/index.style";
+// import { AVAILABLE_TOPS } from "../data/available_tops";
+
+// const topsList = [...AVAILABLE_TOPS];
 
 // export default class tops extends React.Component {
 //   state = {
-//     tops: [],
-//     loading: true
+//     items: topsList,
+//     loading: false
 //   };
-
-//   componentDidMount() {
-//     VSFetch("/tops")
-//       .then(res => {
-//         this.setState({
-//           tops: res.result,
-//           loading: false
-//         });
-//       })
-//       .catch(err => {
-//         console.log(err);
-//       });
-//   }
 
 //   render() {
 //     if (this.state.loading) {
@@ -228,51 +371,58 @@
 //     }
 
 //     return (
-//       <View style={style.container}>
-//         {/* <Image style={style.image} source={this.state.tops[0]} /> */}
-//         <Text style={style.headerText}>{this.state.tops[0]}</Text>
-//       </View>
-//       // <FlatList
-//       //   data={this.state.tops}
-//       //   renderItem={({ item, index }) => (
-//       //     <View style={style.container}>
-//       //       <Image style={style.image} source={item} />
-//       //     </View>
-//       //   )}
-//       // />
+//       <FlatList
+//         data={this.state.items}
+//         renderItem={({ item }) => (
+//           <View style={style.container}>
+//             <Image style={style.im} source={item} />
+//           </View>
+//         )}
+//         keyExtractor={item => item._id}
+//       />
 //     );
 //   }
 // }
 
-import React from "react";
-import { ActivityIndicator, FlatList, View, Image } from "react-native";
+// TEST LINK  ////////////////////////////////////////////////////////////////////////
+// import React from "react";
+// import {
+//   ActivityIndicator,
+//   FlatList,
+//   View,
+//   Text,
+//   Image,
+//   Linking,
+//   ScrollView
+// } from "react-native";
 
-import { VSFetch } from "../util/api";
-import style from "../styles/index.style";
-import { AVAILABLE_TOPS } from "../data/available_tops";
+// import { VSFetch } from "../util/api";
+// import style from "../styles/index.style";
+// import TopPic from "../components/topPic";
+// import { AVAILABLE_TOPS } from "../data/available_tops";
 
-const topsList = [...AVAILABLE_TOPS];
+// const topsList = [...AVAILABLE_TOPS];
 
-export default class tops extends React.Component {
-  state = {
-    items: topsList,
-    loading: false
-  };
+// const x = require("../assets/Tops/1.png");
 
-  render() {
-    if (this.state.loading) {
-      return <ActivityIndicator />;
-    }
-
-    return (
-      <FlatList
-        data={this.state.items}
-        renderItem={({ item }) => (
-          <View style={style.container}>
-            <Image style={style.im} source={item} />
-          </View>
-        )}
-      />
-    );
-  }
-}
+// export default class tops extends React.Component {
+//   render() {
+//     return (
+//       <View style={style.container}>
+//         <ScrollView>
+//           {topsList.map(t => (
+//             <Image style={style.im} source={t} />
+//           ))}
+//           <Image
+//             style={{ height: 500, width: 500, flex: 1 }}
+//             source={{
+//               uri:
+//                 "https://i.dlpng.com/static/png/4704265-voltron-png-96-images-in-collection-page-3-voltron-png-600_500_preview.png"
+//             }}
+//           />
+//           <Image style={{ height: 500, width: 500, flex: 1 }} source={x} />
+//         </ScrollView>
+//       </View>
+//     );
+//   }
+// }

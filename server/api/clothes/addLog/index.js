@@ -1,15 +1,15 @@
 const app = require("../../../util/configureApi");
 const connectDB = require("../../../util/db");
-const Clothes = require("../../../models/Cache");
+const logged = require("../../../models/logged");
 
 app.put("*", (req, res) => {
   connectDB()
     .then(() => {
-      const { _id } = req.query;
+      return logged.findOneAndUpdate({
+        $inc: { count: 1 }
+      });
 
-      if (!_id) {
-        throw new Error("No document id specified.");
-      }
+      // return logged.findOne();
 
       //   return Clothes.findOneAndUpdate(
       //     // increment log

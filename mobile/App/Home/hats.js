@@ -39,6 +39,7 @@ export default class hats extends React.Component {
             <Image style={style.im} source={item} />
           </View>
         )}
+        keyExtractor={item => item._id}
       />
     );
   }
