@@ -18,23 +18,26 @@ const styles = StyleSheet.create({
   text: {
     color: "#000000",
     fontSize: 20,
-    marginTop: 5
+    marginTop: 5,
+    justifyContent: "flex-end"
   },
   button: {
     borderWidth: 10,
     borderColor: "#977fc9",
-    width: screen.width / 3,
-    height: screen.width / 3,
-    borderRadius: screen.width / 3,
+    width: (screen.width * 3) / 8,
+    height: (screen.width * 3) / 8,
+    borderRadius: (screen.width * 3) / 8,
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 15,
-    marginLeft: 15,
-    marginTop: 50,
-    flex: 1
+    // marginRight: 15,
+    // marginLeft: 15,
+    // marginTop: 30,
+    // marginBottom: 30,
+    margin: 15
+    // flex: 1
   },
   buttonText: {
-    fontSize: 20,
+    fontSize: 23,
     color: "#0b00a6",
     fontWeight: "bold",
     textAlign: "center"
@@ -44,23 +47,23 @@ const styles = StyleSheet.create({
 class home extends React.Component {
   state = { count: null, loading: false };
 
-  componentDidMount() {
-    this.setState({ loading: true }, () => {
-      VSFetch(`/getLog`, { method: "GET" })
-        .then(res => {
-          // get response
-          // console.log(res.result);
-          this.setState({ count: res.result.count }); // increment log after button press
-        })
-        .catch(error => {
-          console.log("log get error", error);
-        })
-        .finally(() => {
-          // can press button again
-          this.setState({ loading: false });
-        });
-    });
-  }
+  // getUpdate() {
+  //   this.setState({ loading: true }, () => {
+  //     VSFetch(`/getLog`, { method: "GET" })
+  //       .then(res => {
+  //         // get response
+  //         // console.log(res.result);
+  //         this.setState({ count: res.result.count }); // increment log after button press
+  //       })
+  //       .catch(error => {
+  //         console.log("log get error", error);
+  //       })
+  //       .finally(() => {
+  //         // can press button again
+  //         this.setState({ loading: false });
+  //       });
+  //   });
+  // }
 
   handleLogPress() {
     this.setState({ loading: true }, () => {
@@ -138,17 +141,21 @@ class home extends React.Component {
                 style={style.button1}
                 onPress={() => this.handleLogPress()}
               >
-                <Text style={style.buttonText1}>Log Today</Text>
+                <Text style={[style.buttonText1, { marginLeft: 5 }]}>
+                  Log Today
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={style.button1}
                 onPress={() => this.handleClearPress()}
               >
-                <Text style={style.buttonText1}>Clear Log</Text>
+                <Text style={[style.buttonText1, { marginRight: 15 }]}>
+                  Clear Log
+                </Text>
               </TouchableOpacity>
             </View>
-            <Text style={styles.text}>
-              {`Logged outfits ${this.state.count} times.`}
+            <Text style={[styles.buttonText, { margin: 15 }]}>
+              {`Logged outfits ${this.state.count || 0} times.`}
             </Text>
           </View>
         </SafeAreaView>

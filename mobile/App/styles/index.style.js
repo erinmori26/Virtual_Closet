@@ -61,12 +61,15 @@ export default StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 15,
     borderRadius: 20,
-    marginRight: 5,
-    marginTop: 10
+    width: 200,
+    margin: 10,
+    marginTop: 25,
+    justifyContent: "flex-end"
   },
   buttonText1: {
     color: "#fff",
-    fontSize: 15,
-    textAlign: "center"
+    fontSize: 22,
+    textAlign: "center",
+    fontWeight: "bold"
   }
 });

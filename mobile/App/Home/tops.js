@@ -197,173 +197,335 @@
 
 // export default tops;
 
+// import React from "react";
+// import {
+//   ActivityIndicator,
+//   FlatList,
+//   View,
+//   Text,
+//   Image,
+//   Linking
+// } from "react-native";
+
+// import { VSFetch } from "../util/api";
+// import style from "../styles/index.style";
+// import TopPic from "../components/topPic";
+
+// // const x = "../assets/Tops/1.png";
+
+// export default class tops extends React.Component {
+//   state = {
+//     tops: [],
+//     test: [],
+//     loading: false
+//   };
+
+//   componentDidMount() {
+//     VSFetch("/tops")
+//       .then(res => {
+//         this.setState({
+//           test: res.result.img,
+//           tops: res.result,
+//           loading: false
+//         });
+//       })
+//       .catch(err => {
+//         console.log(err);
+//       });
+//   }
+
+//   loopRender() {
+//     a = this.state.tops;
+
+//     let s = [];
+//     let t = [];
+//     for (let i = 0; i < a.length; i++) {
+//       s.push(a[i].img);
+//       t.push(a[i].type);
+//       console.log(t[i]);
+//     }
+
+//     return s;
+
+//     // let l = [];
+//     // for (let b = 0; b < s.length; b++) {
+//     //   if (t[b] == "local") {
+//     //     x = "require(" + s[b] + ")";
+//     //     l.push(
+//     //       <View style={style.container}>
+//     //         {/* <Image style={style.image} source={x} /> */}
+//     //         <Text style={style.headerText}>{x}</Text>
+//     //       </View>
+//     //     );
+//     //   } else {
+//     //     l.push(
+//     //       <View style={style.container}>
+//     //         <Image style={style.image} source={s[b]} />
+//     //       </View>
+//     //     );
+//     //   }
+//     // }
+
+//     // return l;
+//   }
+
+//   newArr() {
+//     let ar = [];
+//     for (let u of this.state.tops) {
+//       // console.log(u.img);
+//       x = 'require("' + u.img + '")';
+//       ar.push(x);
+//     }
+
+//     return ar;
+//   }
+
+//   render() {
+//     if (this.state.loading) {
+//       return <ActivityIndicator />;
+//     }
+
+//     y = this.newArr();
+//     // console.log(y);
+//     // for (let u of this.state.tops) {
+//     //   console.log(u.img);
+//     // }
+
+//     // this.state.tops.map(us => {
+//     //   console.log(us);
+//     // });
+
+//     return (
+//       // <View style={style.container}>
+//       //   {/* <Image style={style.image} source={this.state.tops[0].img} /> */}
+//       //   <Image style={style.image} source={{uri: this.state.tops[0].img}} />
+//       //   {/* <Text style={style.headerText}>{this.state.tops[0]}</Text> */}
+//       // </View>
+//       <View style={style.container}>
+//         {/* {this.state.tops.map(mm => {
+//           // <Image
+//           //   style={{ height: 500, width: 500, flex: 1 }}
+//           //   source={{
+//           //     uri: mm
+//           //   }}
+//           // />;
+//           <Text style={style.headerText}>{mm.type}</Text>;
+//           // {/* <Text
+//           //   style={style.headerText}
+//           //   onPress={() => Linking.openURL(this.state.tops[0].img)}
+//           // >
+//           //   {this.state.tops[0].img}
+//           // </Text> */}
+//         {/* })} */}
+//         {/* <Image style={style.image} source={y[0]} />
+//         <Text style={style.headerText}>{y[0]}</Text> */}
+//         {/* <TopPic {...this.state.tops[0]} /> */}
+//         <FlatList
+//           data={this.state.tops}
+//           renderItem={item => (
+//             // <View style={style.container}>
+//             // <Image style={style.image} source={{ uri: item.img }} />
+//             <Text style={style.headerText}>YES {item.img}</Text>
+//             // </View>
+//             // <TopPic {...item} />
+//           )}
+//           // renderItem={(n) => this.loopRender()}
+
+//           // renderItem={({ item }) =>
+//           //   item.type == "local" ? (
+//           //     <View style={style.container}>
+//           //       <Image style={style.image} source={require(item.img)} />
+//           //     </View>
+//           //   ) : (
+//           //     <View style={style.container}>
+//           //       <Image style={style.image} source={item.img} />
+//           //     </View>
+//           //   )
+//           // }
+//           keyExtractor={item => item._id}
+//         />
+//       </View>
+//     );
+//   }
+// }
+
+// REGULAR ////////////////////////////////////////////////////////////////////////////
 import React from "react";
-import {
-  ActivityIndicator,
-  FlatList,
-  View,
-  Text,
-  Image,
-  Linking
-} from "react-native";
+import { ActivityIndicator, FlatList, View, Image } from "react-native";
 
 import { VSFetch } from "../util/api";
 import style from "../styles/index.style";
-import TopPic from "../components/topPic";
+import { AVAILABLE_TOPS } from "../data/available_tops";
 
-// const x = "../assets/Tops/1.png";
+const topsList = [...AVAILABLE_TOPS];
 
 export default class tops extends React.Component {
   state = {
-    tops: [],
-    test: [],
+    items: topsList,
     loading: false
   };
-
-  componentDidMount() {
-    VSFetch("/tops")
-      .then(res => {
-        this.setState({
-          test: res.result.img,
-          tops: res.result,
-          loading: false
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-
-  loopRender() {
-    a = this.state.tops;
-
-    let s = [];
-    let t = [];
-    for (let i = 0; i < a.length; i++) {
-      s.push(a[i].img);
-      t.push(a[i].type);
-      console.log(t[i]);
-    }
-
-    return s;
-
-    // let l = [];
-    // for (let b = 0; b < s.length; b++) {
-    //   if (t[b] == "local") {
-    //     x = "require(" + s[b] + ")";
-    //     l.push(
-    //       <View style={style.container}>
-    //         {/* <Image style={style.image} source={x} /> */}
-    //         <Text style={style.headerText}>{x}</Text>
-    //       </View>
-    //     );
-    //   } else {
-    //     l.push(
-    //       <View style={style.container}>
-    //         <Image style={style.image} source={s[b]} />
-    //       </View>
-    //     );
-    //   }
-    // }
-
-    // return l;
-  }
-
-  newArr() {
-    let ar = [];
-    for (let u of this.state.tops) {
-      // console.log(u.img);
-      x = 'require("' + u.img + '")';
-      ar.push(x);
-    }
-
-    return ar;
-  }
 
   render() {
     if (this.state.loading) {
       return <ActivityIndicator />;
     }
 
-    y = this.newArr();
-    // console.log(y);
-    // for (let u of this.state.tops) {
-    //   console.log(u.img);
-    // }
-
-    // this.state.tops.map(us => {
-    //   console.log(us);
-    // });
-
     return (
-      // <View style={style.container}>
-      //   {/* <Image style={style.image} source={this.state.tops[0].img} /> */}
-      //   <Image style={style.image} source={{uri: this.state.tops[0].img}} />
-      //   {/* <Text style={style.headerText}>{this.state.tops[0]}</Text> */}
-      // </View>
-      <View style={style.container}>
-        {/* {this.state.tops.map(mm => {
-          // <Image
-          //   style={{ height: 500, width: 500, flex: 1 }}
-          //   source={{
-          //     uri: mm
-          //   }}
-          // />;
-          <Text style={style.headerText}>{mm.type}</Text>;
-          // {/* <Text
-          //   style={style.headerText}
-          //   onPress={() => Linking.openURL(this.state.tops[0].img)}
-          // >
-          //   {this.state.tops[0].img}
-          // </Text> */}
-        {/* })} */}
-        {/* <Image style={style.image} source={y[0]} />
-        <Text style={style.headerText}>{y[0]}</Text> */}
-        {/* <TopPic {...this.state.tops[0]} /> */}
-        <FlatList
-          data={this.state.tops}
-          renderItem={item => (
-            // <View style={style.container}>
-            // <Image style={style.image} source={{ uri: item.img }} />
-            <Text style={style.headerText}>YES {item.img}</Text>
-            // </View>
-            // <TopPic {...item} />
-          )}
-          // renderItem={(n) => this.loopRender()}
-
-          // renderItem={({ item }) =>
-          //   item.type == "local" ? (
-          //     <View style={style.container}>
-          //       <Image style={style.image} source={require(item.img)} />
-          //     </View>
-          //   ) : (
-          //     <View style={style.container}>
-          //       <Image style={style.image} source={item.img} />
-          //     </View>
-          //   )
-          // }
-          keyExtractor={item => item._id}
-        />
-      </View>
+      <FlatList
+        data={this.state.items}
+        renderItem={({ item }) => (
+          <View style={style.container}>
+            <Image style={style.im} source={item} />
+          </View>
+        )}
+        keyExtractor={item => item._id}
+      />
     );
   }
 }
 
-// REGULAR ////////////////////////////////////////////////////////////////////////////
+// ASYNC TEST ////////////////////////////////////////////////////////
 // import React from "react";
-// import { ActivityIndicator, FlatList, View, Image } from "react-native";
+// import {
+//   ActivityIndicator,
+//   FlatList,
+//   View,
+//   Image,
+//   Text,
+//   AsyncStorage
+// } from "react-native";
+// // import { AppLoading } from "expo";
+// import { Asset } from "expo-asset";
 
 // import { VSFetch } from "../util/api";
 // import style from "../styles/index.style";
 // import { AVAILABLE_TOPS } from "../data/available_tops";
 
+// // import { AppLoading } from "../components/AppLoading";
+
 // const topsList = [...AVAILABLE_TOPS];
+// const stringifiedArray = JSON.stringify(topsList);
+// const restoredArray = JSON.parse(stringifiedArray);
+
+// export const getRecentSearch = () =>
+//   AsyncStorage.getItem(KEY).then(str => {
+//     // if string does not exist, return it
+//     if (str) {
+//       return JSON.parse(str);
+//     }
+
+//     return [];
+//   });
+
+// export const addRecentSearch = item =>
+//   getRecentSearch().then(history => {
+//     // get rid of duplicate searches
+//     const oldHistory = history.filter(
+//       existingItem => existingItem.id !== item.id
+//     );
+//     const newHistory = [item, ...oldHistory]; // spread old history onto back of obj
+
+//     // change to string, write to memory storage
+//     return AsyncStorage.setItem(KEY, JSON.stringify(newHistory));
+//   });
 
 // export default class tops extends React.Component {
 //   state = {
-//     items: topsList,
+//     tops: [],
 //     loading: false
 //   };
+
+//   componentDidMount() {
+//     getRecentSearch().then(tops => {
+//       this.setState({ tops });
+//     });
+//   }
+
+//   // loadPics() {
+//   //   let x = [];
+//   //   for (let u of topsList) {
+//   //     x.push(Asset.fromModule(u));
+//   //   }
+
+//   //   this.setState({ tops: x });
+//   // }
+
+//   // async storeItem(key, item) {
+//   //   try {
+//   //     //we want to wait for the Promise returned by AsyncStorage.setItem()
+//   //     //to be resolved to the actual value before returning the value
+//   //     var jsonOfItem = await AsyncStorage.setItem(key, JSON.stringify(item));
+//   //     return jsonOfItem;
+//   //   } catch (error) {
+//   //     console.log(error.message);
+//   //   }
+//   // }
+
+//   // async retrieveItem(key) {
+//   //   try {
+//   //     const retrievedItem = await AsyncStorage.getItem(key);
+//   //     const item = JSON.parse(retrievedItem);
+//   //     return item;
+//   //   } catch (error) {
+//   //     console.log(error.message);
+//   //   }
+//   //   return;
+//   // }
+
+//   // _loadResourcesAsync = async () => {
+//   //   return Promise.all([
+//   //     Asset.loadAsync([
+//   //       require("../assets/Tops/1.png"),
+//   //       require("../assets/Tops/2.png")
+//   //     ])
+//   //   ]);
+//   // };
+
+//   // _handleLoadingError = error => {
+//   //   // In this case, you might want to report the error to your error
+//   //   // reporting service, for example Sentry
+//   //   console.warn(error);
+//   // };
+
+//   // _handleFinishLoading = () => {
+//   //   this.setState({ loading: true });
+//   // };
+
+//   //   render() {
+//   //     if (!this.state.loading && !this.props.skipLoadingScreen) {
+//   //       return (
+//   //         <AppLoading
+//   //           startAsync={this._loadResourcesAsync}
+//   //           onError={this._handleLoadingError}
+//   //           onFinish={this._handleFinishLoading}
+//   //         />
+//   //       );
+//   //     } else {
+//   //       return (
+//   //         <View style={styles.container}>
+//   //           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+//   //           <AppNavigator />
+//   //         </View>
+//   //       );
+//   //     }
+//   //   }
+//   // }
+
+//   // async componentWillMount() {
+//   //   await Asset.loadAsync([
+//   //     topsList
+//   // ]);
+
+//   // const list = Promise.all(
+//   //   await Asset.loadAsync([
+//   //     require("../assets/Tops/1.png"),
+//   //     require("../assets/Tops/2.png")
+//   //   ])
+//   // );
+//   // this.setState({ tops: list });
+
+//   // this.loadPics();
+//   // }
 
 //   render() {
 //     if (this.state.loading) {
@@ -371,15 +533,24 @@ export default class tops extends React.Component {
 //     }
 
 //     return (
-//       <FlatList
-//         data={this.state.items}
-//         renderItem={({ item }) => (
-//           <View style={style.container}>
+//       <View style={style.container}>
+//         {/* <AppLoading
+//         startAsync={this._loadResourcesAsync}
+//         onError={this._handleLoadingError}
+//         onFinish={this._handleFinishLoading}
+//         /> */}
+//         <Text style={style.headerText}>{this.state.tops[0]}</Text>
+
+//         {/* <FlatList
+//           data={this.state.tops}
+//           renderItem={({ item }) => (
+//             // <View style={style.container}>
 //             <Image style={style.im} source={item} />
-//           </View>
-//         )}
-//         keyExtractor={item => item._id}
-//       />
+//             // </View>
+//           )}
+//           keyExtractor={item => item._id}
+//         /> */}
+//       </View>
 //     );
 //   }
 // }

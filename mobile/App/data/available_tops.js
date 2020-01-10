@@ -17,7 +17,7 @@ export const AVAILABLE_TOPS = [
   require("../assets/Tops/16.png"),
   require("../assets/Tops/17.png"),
   // require("../assets/Tops/18.png"),
-  require("../assets/Tops/19.png"),
+  // require("../assets/Tops/19.png"),
   require("../assets/Tops/20.png"),
   // require("../assets/Tops/21.png"),
   require("../assets/Tops/22.png")

@@ -5,23 +5,17 @@ const logged = require("../../../models/logged");
 app.put("*", (req, res) => {
   connectDB()
     .then(() => {
-      return logged.findOneAndUpdate({
-        $set: { count: 0 }
-      });
+      return logged.findOneAndUpdate(
+        {
+          $set: { count: 0 }
+        }
+        // {
+        //   useFindAndModify: true,
+        //   new: true
+        // }
+      );
 
       // return logged.findOne();
-
-      //   return Clothes.findOneAndUpdate(
-      //     // increment log
-      //     { _id },
-      //     {
-      //       $inc: { foundCount: 1 }
-      //     },
-      //     {
-      //       useFindAndModify: true,
-      //       new: true
-      //     }
-      //   );
     })
     .then(cacheItem => {
       res.status(200).json({
